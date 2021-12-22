@@ -4,18 +4,18 @@ use std::collections::HashMap;
 use std::collections::HashSet;
 use std::fmt::Display;
 
-// q00
-fn reverse(text: &str) -> String {
+// q0
+pub fn reverse(text: &str) -> String {
     text.chars().rev().collect()
 }
 
 // q01
-fn odd_char(text: &str) -> String {
+pub fn odd_char(text: &str) -> String {
     text.chars().step_by(2).collect()
 }
 
 // q02
-fn concat_alternately(left: &str, right: &str) -> String {
+pub fn concat_alternately(left: &str, right: &str) -> String {
     let mut result = String::new();
     left.chars().zip(right.chars()).for_each(|(l, r)| {
         result.push(l);
@@ -25,7 +25,7 @@ fn concat_alternately(left: &str, right: &str) -> String {
 }
 
 // q03
-fn counts_word_length(text: &str) -> Vec<usize> {
+pub fn counts_word_length(text: &str) -> Vec<usize> {
     let punctations = &['(', ')', ',', '\"', '.', ';', ':', '\''][..];
     text.split_whitespace()
         .map(|word| word.replace(punctations, "").len())
@@ -33,7 +33,7 @@ fn counts_word_length(text: &str) -> Vec<usize> {
 }
 
 // q04
-fn q04() -> HashMap<String, usize> {
+pub fn q04() -> HashMap<String, usize> {
     let org_str = "Hi He Lied Because Boron Could Not Oxidize Fluorine. New Nations Might Also Sign Peace Security Clause. Arthur King Can.";
     let take1st = [1, 5, 6, 7, 8, 9, 15, 16, 19];
     let punctations = &['(', ')', ',', '\"', '.', ';', ':', '\''][..];
@@ -49,13 +49,13 @@ fn q04() -> HashMap<String, usize> {
         .collect::<HashMap<_, _>>()
 }
 
-fn character_n_gram(text: &str, n: usize) -> Vec<String> {
+pub fn character_n_gram(text: &str, n: usize) -> Vec<String> {
     (0..text.len() - n + 1)
         .map(|i| text.get(i..i + n).unwrap().to_string())
         .collect()
 }
 
-fn word_n_gram(text: &str, n: usize) -> Vec<Vec<String>> {
+pub fn word_n_gram(text: &str, n: usize) -> Vec<Vec<String>> {
     let words: Vec<String> = text.split_whitespace().map(|w| w.to_string()).collect();
 
     (0..words.len() - n + 1)
@@ -66,7 +66,7 @@ fn word_n_gram(text: &str, n: usize) -> Vec<Vec<String>> {
         .collect()
 }
 
-fn set(left: &str, right: &str) {
+pub fn set(left: &str, right: &str) {
     let left_set: HashSet<String> = character_n_gram(left, 2).into_iter().collect();
     let right_set: HashSet<String> = character_n_gram(right, 2).into_iter().collect();
 
@@ -84,11 +84,11 @@ fn set(left: &str, right: &str) {
     println!("{}", right_set.contains(&"se".to_string()));
 }
 
-fn generate_template_text<X: Display, Y: Display, Z: Display>(x: X, y: Y, z: Z) -> String {
+pub fn generate_template_text<X: Display, Y: Display, Z: Display>(x: X, y: Y, z: Z) -> String {
     format!("{}時の{}は{}", x, y, z)
 }
 
-fn typoglycemia(text: &str) -> String {
+pub fn typoglycemia(text: &str) -> String {
     let mut rng = thread_rng();
 
     let ret: Vec<_> = text
@@ -116,7 +116,7 @@ fn typoglycemia(text: &str) -> String {
     ret.join(" ")
 }
 
-fn run_section1() {
+pub fn run_section1() {
     println!("{}", reverse("stressed"));
     println!("{}", reverse("ぱたとくかしーー"));
 
